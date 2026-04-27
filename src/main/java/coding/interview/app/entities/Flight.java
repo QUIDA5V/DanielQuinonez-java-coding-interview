@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 @Entity
 public class Flight {
     @Id
@@ -14,13 +16,15 @@ public class Flight {
     String origin;
     String destination;
     String status;
+    List<Passenger> passengers;
 
-    public Flight(Long id, String code, String origin, String destination, String status) {
+    public Flight(Long id, String code, String origin, String destination, String status, List<Passenger> passengers) {
         this.id = id;
         this.code = code;
         this.origin = origin;
         this.destination = destination;
         this.status = status;
+        this.passengers = passengers;
     }
 
     public Flight() {
@@ -65,5 +69,12 @@ public class Flight {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
     }
 }

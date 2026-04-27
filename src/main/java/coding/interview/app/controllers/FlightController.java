@@ -35,8 +35,14 @@ public class FlightController {
         // TODO: this endpoint is not working as expected
         final Optional<Flight> flight = flightService.findById(id);
         final Flight updatedFlight = new Flight(flight.get().getId(), request.code(), request.origin(),
-                request.destination(), request.status());
+                request.destination(), request.status(), null);
         flightService.save(updatedFlight);
         return ResponseEntity.ok(updatedFlight);
+    }
+
+    @DeleteMapping("/{id}/passenger/{passengerId}")
+    public ResponseEntity<Flight> deletePassengerFromFlight(@PathVariable("id") Long id,
+                                               @PathVariable("passengerId") Long passengerId) {
+        return ResponseEntity.ok(flightService.deletePassengerFromFlight(id, passengerId));
     }
 }
